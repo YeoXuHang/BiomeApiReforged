@@ -1,0 +1,22 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+license = "All Rights Reserved"
+[[mods]]
+modId = "biomeapireforged"
+version = "${file.jarVersion}"
+displayName = "Biome API Reforged"
+description = '''
+Porting Fabric Biome Api to Forge version
+'''
+[[dependencies.biomeapireforged]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.biomeapireforged]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,1.20)"
+ordering = "NONE"
+side = "BOTH"
