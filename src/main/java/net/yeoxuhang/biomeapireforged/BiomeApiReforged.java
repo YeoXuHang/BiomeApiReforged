@@ -23,19 +23,19 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.yeoxuhang.biomeapireforged.example.ExampleBiomes;
 import org.checkerframework.checker.signature.qual.Identifier;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(BiomeApiReforged.MODID)
 public class BiomeApiReforged {
-
-    // Define mod id in a common place for everything to reference
     public static final String MODID = "biomeapireforged";
-    // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     public BiomeApiReforged() {
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ExampleBiomes.generateBiomes(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
     }
 }
