@@ -3,9 +3,9 @@ package net.yeoxuhang.biomeapireforged.fabric.api.biome;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
+import net.minecraft.data.BuiltinRegistries;
 import net.yeoxuhang.biomeapireforged.impl.biome.modification.BuiltInRegistryKeys;
 import org.jetbrains.annotations.NotNull;
-import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
