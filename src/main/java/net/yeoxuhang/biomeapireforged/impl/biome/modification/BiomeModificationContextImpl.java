@@ -46,22 +46,22 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
         this.spawnSettings = new SpawnSettingsContextImpl();
     }
 
-    
+
     public WeatherContext getWeather() {
         return weather;
     }
 
-    
+
     public EffectsContext getEffects() {
         return effects;
     }
 
-    
+
     public GenerationSettingsContext getGenerationSettings() {
         return generationSettings;
     }
 
-    
+
     public SpawnSettingsContext getSpawnSettings() {
         return spawnSettings;
     }
@@ -77,22 +77,22 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
     private class WeatherContextImpl implements WeatherContext {
         private final Biome.ClimateSettings weather = biome.climateSettings;
 
-        
+
         public void setPrecipitation(Biome.Precipitation precipitation) {
             weather.precipitation = Objects.requireNonNull(precipitation);
         }
 
-        
+
         public void setTemperature(float temperature) {
             weather.temperature = temperature;
         }
 
-        
+
         public void setTemperatureModifier(Biome.TemperatureModifier temperatureModifier) {
             weather.temperatureModifier = Objects.requireNonNull(temperatureModifier);
         }
 
-        
+
         public void setDownfall(float downfall) {
             weather.downfall = downfall;
         }
@@ -101,62 +101,62 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
     private class EffectsContextImpl implements EffectsContext {
         private final BiomeSpecialEffects effects = biome.getSpecialEffects();
 
-        
+
         public void setFogColor(int color) {
             effects.fogColor = color;
         }
 
-        
+
         public void setWaterColor(int color) {
             effects.waterColor = color;
         }
 
-        
+
         public void setWaterFogColor(int color) {
             effects.waterFogColor = color;
         }
 
-        
+
         public void setSkyColor(int color) {
             effects.skyColor = color;
         }
 
-        
+
         public void setFoliageColor(Optional<Integer> color) {
             effects.foliageColorOverride = Objects.requireNonNull(color);
         }
 
-        
+
         public void setGrassColor(Optional<Integer> color) {
             effects.grassColorOverride = Objects.requireNonNull(color);
         }
 
-        
+
         public void setGrassColorModifier(@NotNull BiomeSpecialEffects.GrassColorModifier colorModifier) {
             effects.grassColorModifier = Objects.requireNonNull(colorModifier);
         }
 
-        
+
         public void setParticleConfig(Optional<AmbientParticleSettings> particleConfig) {
             effects.ambientParticleSettings = Objects.requireNonNull(particleConfig);
         }
 
-        
+
         public void setAmbientSound(Optional<SoundEvent> sound) {
             effects.ambientLoopSoundEvent = Objects.requireNonNull(sound);
         }
 
-        
+
         public void setMoodSound(Optional<AmbientMoodSettings> sound) {
             effects.ambientMoodSettings = Objects.requireNonNull(sound);
         }
 
-        
+
         public void setAdditionsSound(Optional<AmbientAdditionsSettings> sound) {
             effects.ambientAdditionsSettings = Objects.requireNonNull(sound);
         }
 
-        
+
         public void setMusic(Optional<Music> sound) {
             effects.backgroundMusic = Objects.requireNonNull(sound);
         }
@@ -224,7 +224,7 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
             });
         }
 
-        
+
         public boolean removeFeature(GenerationStep.Decoration step, ResourceKey<PlacedFeature> placedFeatureKey) {
             PlacedFeature configuredFeature = features.getOrThrow(placedFeatureKey);
 
@@ -248,7 +248,7 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
             return false;
         }
 
-        
+
         public void addFeature(GenerationStep.Decoration step, ResourceKey<PlacedFeature> entry) {
             List<HolderSet<PlacedFeature>> featureSteps = generationSettings.features;
             int index = step.ordinal();
@@ -264,13 +264,13 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
             rebuildFlowerFeatures = true;
         }
 
-        
+
         public void addCarver(GenerationStep.Carving step, ResourceKey<ConfiguredWorldCarver<?>> entry) {
             // We do not need to delay evaluation of this since the registries are already fully built
             generationSettings.carvers.put(step, plus(generationSettings.carvers.get(step), carvers.getHolder(entry).orElseThrow()));
         }
 
-        
+
         public boolean removeCarver(GenerationStep.Carving step, ResourceKey<ConfiguredWorldCarver<?>> configuredCarverKey) {
             ConfiguredWorldCarver<?> carver = carvers.getOrThrow(configuredCarverKey);
             List<Holder<ConfiguredWorldCarver<?>>> genCarvers = new ArrayList<>(generationSettings.carvers.get(step).stream().toList());
@@ -340,12 +340,12 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
             spawnSettings.mobSpawnCosts = ImmutableMap.copyOf(spawnSettings.mobSpawnCosts);
         }
 
-        
+
         public void setCreatureSpawnProbability(float probability) {
             spawnSettings.creatureGenerationProbability = probability;
         }
 
-        
+
         public void addSpawn(MobCategory spawnGroup, MobSpawnSettings.SpawnerData spawnEntry) {
             Objects.requireNonNull(spawnGroup);
             Objects.requireNonNull(spawnEntry);
@@ -353,7 +353,7 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
             fabricSpawners.get(spawnGroup).add(spawnEntry);
         }
 
-        
+
         public boolean removeSpawns(BiPredicate<MobCategory, MobSpawnSettings.SpawnerData> predicate) {
             boolean anyRemoved = false;
 
@@ -366,13 +366,13 @@ public class BiomeModificationContextImpl implements BiomeModificationContext {
             return anyRemoved;
         }
 
-        
+
         public void setSpawnCost(EntityType<?> entityType, double mass, double gravityLimit) {
             Objects.requireNonNull(entityType);
             spawnSettings.mobSpawnCosts.put(entityType, new MobSpawnSettings.MobSpawnCost(gravityLimit, mass));
         }
 
-        
+
         public void clearSpawnCost(EntityType<?> entityType) {
             spawnSettings.mobSpawnCosts.remove(entityType);
         }
