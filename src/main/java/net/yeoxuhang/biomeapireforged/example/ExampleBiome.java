@@ -1,30 +1,27 @@
 package net.yeoxuhang.biomeapireforged.example;
 
-import net.minecraft.data.worldgen.features.EndFeatures;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.placement.EndPlacements;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraft.world.level.biome.BiomeSpecialEffects;
-import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
+import net.minecraft.data.worldgen.placement.NetherPlacements;
+import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
-
-public class ExampleBiome {
+public abstract class ExampleBiome {
 
     public static Biome make() {
+        BiomeGenerationSettings.Builder $$0 = (new BiomeGenerationSettings.Builder())
+                .addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, EndPlacements.END_SPIKE)
+                .addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, NetherPlacements.WARPED_FOREST_VEGETATION);
+        MobSpawnSettings.Builder $$1 = new MobSpawnSettings.Builder();
+        BiomeDefaultFeatures.addSurfaceFreezing($$0);
+        $$0.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, MiscOverworldPlacements.ICE_SPIKE);
+        $$0.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, MiscOverworldPlacements.ICE_PATCH);
 
-        BiomeGenerationSettings.Builder biomeGenSettings = (new BiomeGenerationSettings.Builder());
-        biomeGenSettings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, EndPlacements.END_GATEWAY_RETURN);
-
-        return exampleBiome(biomeGenSettings);
-    }
-
-    // Winterfest
-    public static Biome exampleBiome(BiomeGenerationSettings.Builder pGenerationSettingsBuilder) {
-        MobSpawnSettings.Builder mobspawninfo$builder = new MobSpawnSettings.Builder();
-        return (new Biome.BiomeBuilder())
-                .precipitation(Biome.Precipitation.NONE)
-                .temperature(0.5F).downfall(0.5F)
-                .mobSpawnSettings(mobspawninfo$builder.build())
-                .generationSettings(pGenerationSettingsBuilder.build()).build();
+        BiomeDefaultFeatures.endSpawns($$1);
+        return (new Biome.BiomeBuilder()).precipitation(Biome.Precipitation.NONE)
+                .temperature(0.5F).downfall(0.5F).specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(4159204).waterFogColor(329011).fogColor(10518688).skyColor(0)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings($$1.build())
+                .generationSettings($$0.build()).build();
     }
 }

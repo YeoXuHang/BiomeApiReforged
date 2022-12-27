@@ -5,6 +5,7 @@ license = "All Rights Reserved"
 modId = "biomeapireforged"
 version = "${file.jarVersion}"
 displayName = "Biome API Reforged"
+authors="YeoXuHang"
 description = '''
 Porting Fabric Biome Api to Forge version
 '''
