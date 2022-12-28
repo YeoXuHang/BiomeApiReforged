@@ -36,7 +36,7 @@ dependencies {
 }
 ```
 
-Next you need to add it as a dependecy on Forge to make your mod require Biome Api Reforged when loading. In your mods.toml add the following block to the file:
+Next you need to add it as a dependecy on Forge to make your mod require Biome Api Reforged when loading. In your ``mods.toml`` add the following block to the file:
 
 ```java
 [[dependencies.<modId>]]
