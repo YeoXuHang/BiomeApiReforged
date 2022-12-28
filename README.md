@@ -44,4 +44,4 @@ modId = "biomeapireforged"
 mandatory = true
 versionRange = "[<version>,)"
 ordering = "BEFORE"
-side = "BOTH"```
+side = "BOTH"
