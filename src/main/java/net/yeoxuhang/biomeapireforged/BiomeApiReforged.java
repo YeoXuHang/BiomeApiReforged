@@ -8,7 +8,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yeoxuhang.biomeapireforged.example.ExampleBiomes;
 
 import static net.yeoxuhang.biomeapireforged.example.ExampleBiomes.BIOMES;
-import static net.yeoxuhang.biomeapireforged.example.SurfaceRuleRegistry.SURFACE;
 
 @Mod(BiomeApiReforged.MODID)
 public class BiomeApiReforged {
@@ -17,7 +16,6 @@ public class BiomeApiReforged {
     public BiomeApiReforged() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BIOMES.register(modEventBus);
-        SURFACE.register(modEventBus);
         modEventBus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.register(this);
     }

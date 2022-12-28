@@ -9,6 +9,7 @@
     "biome.MixinMinecraftServer",
     "biome.MixinMultiNoiseUtilMultiNoiseSampler",
     "biome.MixinNoiseConfig",
+    "biome.MixinOverworldBiomeBuilder",
     "biome.MixinTheEndBiomeSource",
     "biome.MixnMultiNoiseBiomeSource"
   ],
